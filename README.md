@@ -46,4 +46,8 @@ $ npm run start:prod
 
 # docker 
 $ docker-compose up
+
+Testing resolvers at
+http://localhost:3000/graphql
 ```
+
