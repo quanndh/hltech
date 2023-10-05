@@ -8,8 +8,6 @@ RUN npm install
 
 COPY . .
 
-RUN chmod +x ./wait-for-it.sh
-
 RUN npm run build
 
 RUN git clone https://github.com/vishnubob/wait-for-it.git
