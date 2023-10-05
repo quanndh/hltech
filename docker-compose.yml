@@ -21,7 +21,7 @@ services:
     depends_on:
       - db
     ports:
-      - 4000:3000
+      - 3000:3000
     environment:
       PORT: 3000
       NODE_ENV: development
