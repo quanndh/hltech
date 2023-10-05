@@ -38,7 +38,7 @@ services:
       - './:/src'
   migration:
     image: stock-tracker:latest
-    command: ["./wait-for-it/wait-for-it.sh", "db:5432", "--", "npm", "run", "migration:up"]
+    command: ["npm", "run", "migration:up"]
     environment:
       NODE_ENV: development
       DATABASE_HOST: db

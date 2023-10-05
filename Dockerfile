@@ -10,6 +10,4 @@ COPY . .
 
 RUN npm run build
 
-RUN git clone https://github.com/vishnubob/wait-for-it.git
-
 CMD [ "node", "dist/main.js" ]
