@@ -34,7 +34,6 @@ services:
     image: stock-tracker
     depends_on:
       - db
-      - migration
     ports:
       - 3000:3000
     environment:
