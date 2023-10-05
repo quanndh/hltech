@@ -12,6 +12,20 @@ services:
       - '5433:5432'
     volumes:
       - db:/var/lib/postgresql/data
+  migration:
+    image: stock-tracker:latest
+    command: ["npm", "run", "migration:up"]
+    environment:
+      NODE_ENV: development
+      DATABASE_HOST: db
+      DB_PORT: 5432
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: postgres
+      DATABASE_NAME: postgres
+    links:
+      - db
+    depends_on:
+      - db
   api:
     container_name: stock-tracker
     build:
@@ -20,6 +34,7 @@ services:
     image: stock-tracker
     depends_on:
       - db
+      - migration
     ports:
       - 3000:3000
     environment:
@@ -36,20 +51,6 @@ services:
       - db
     volumes:
       - './:/src'
-  migration:
-    image: stock-tracker:latest
-    command: ["npm", "run", "migration:up"]
-    environment:
-      NODE_ENV: development
-      DATABASE_HOST: db
-      DB_PORT: 5432
-      DATABASE_USER: postgres
-      DATABASE_PASSWORD: postgres
-      DATABASE_NAME: postgres
-    links:
-      - db
-    depends_on:
-      - db
 volumes:
   db:
     driver: local
