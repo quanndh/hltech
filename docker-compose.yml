@@ -37,7 +37,7 @@ services:
     volumes:
       - './:/src'
   migration:
-    image: stock-tracker-migrate
+    image: stock-tracker
     command: ["./wait-for-it/wait-for-it.sh", "db:5432", "--", "npm", "run", "migration:up"]
     environment:
       NODE_ENV: development
