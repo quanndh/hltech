@@ -21,7 +21,7 @@ services:
     depends_on:
       - db
     ports:
-      - 3000:3000
+      - 4000:3000
     environment:
       PORT: 3000
       NODE_ENV: development
@@ -30,7 +30,8 @@ services:
       DATABASE_USER: postgres
       DATABASE_PASSWORD: postgres
       DATABASE_NAME: postgres
-      SECRET: asssssaawdasw
+      API_KEY: O4TQVO4WNT7KQK04
+      SECRET: abc
     links:
       - db
     volumes:
