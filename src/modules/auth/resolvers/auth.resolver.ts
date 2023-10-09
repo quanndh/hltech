@@ -32,8 +32,6 @@ export class AuthResolver {
   ) {
     const data = await this.authService.login(input.username, input.password);
 
-    // console.log({ data });
-
     // ctx.res.cookie('token', data.accessToken, {
     //   expires: dayjs(jwtDecode<JWTDecodeValue>(data.accessToken).exp * 1000).toDate(),
     //   sameSite: true,

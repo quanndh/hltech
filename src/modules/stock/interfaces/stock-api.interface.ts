@@ -22,3 +22,10 @@ export interface IStockIntervalDetail {
   '4. close': string;
   '5. volume': string;
 }
+
+// export function isStockApiResponse(object: any): object is IStockApiResponse {
+//   if (typeof object === 'string') return false;
+//   const [metadata, _] = <[IStockMetadata, IStockInterval]>Object.values(object);
+
+//   return '1. Information' in metadata;
+// }

@@ -14,24 +14,47 @@ export class StockRo {
   @Field()
   lastRefreshed: Date;
 
-  @Field()
-  timezone: string;
+  @Field({ nullable: true })
+  timezone?: string;
 
   @Field(() => [StockPriceRo])
   data: StockPriceRo[];
 
-  constructor(data: IStockApiResponse) {
+  public static fromJson(data: IStockApiResponse) {
+    const stockRo = new StockRo();
     const [metadata, stockInterval] = <[IStockMetadata, IStockInterval]>(
       Object.values(data)
     );
 
-    this.symbol = metadata['2. Symbol'];
-    this.lastRefreshed = new Date(metadata['3. Last Refreshed']);
-    this.timezone = metadata['6. Time Zone'];
+    stockRo.symbol = metadata['2. Symbol'];
+    stockRo.lastRefreshed = new Date(metadata['3. Last Refreshed']);
+    stockRo.timezone = metadata['6. Time Zone'];
 
-    this.data = Object.entries(stockInterval).map(
+    stockRo.data = Object.entries(stockInterval).map(
       ([key, value]) => new StockPriceRo(key, value),
     );
+    return stockRo;
+  }
+
+  public static fromCsv(data: string[], symbol: string) {
+    const stockRo = new StockRo();
+
+    stockRo.symbol = symbol;
+    stockRo.data = data
+      .filter((row) => row.trim().length)
+      .map((row) => {
+        const [time, open, high, low, close, volumn] = row.split(',');
+        return new StockPriceRo(time, {
+          '1. open': open,
+          '2. high': high,
+          '3. low': low,
+          '4. close': close,
+          '5. volume': volumn,
+        });
+      });
+    stockRo.lastRefreshed = stockRo.data[0].time;
+
+    return stockRo;
   }
 }
 

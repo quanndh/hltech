@@ -51,3 +51,15 @@ Testing resolvers at
 http://localhost:3000/graphql
 ```
 
+
+## Requirements
+
+- [x] Documentation
+- [x] Integrate Time Series Stock Data Apis
+- [x] Graphql resolver to query stock data
+- [x] Graphql mutation to signup login
+- [x] Store data using progresql and mikro orm
+- [x] Update authentication to query resolver, add `myStock` query (recent searchs)
+- [x] Add docker
+- [x] Add support csv
+
